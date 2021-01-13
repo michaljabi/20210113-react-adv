@@ -1,18 +1,21 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-class OnSwitch extends React.Component {
-
-	state = {
-		isOn: true
-	}
-
-	render () {
-		return (
-			<button className="btn btn-secondary btn-lg" onClick={() => this.setState(s => ({isOn: !s.isOn}))}>
-				Przełącz { this.state.isOn ? '💡' : '💤'}
-			</button>
-		)
-	}
+OnSwitch.propTypes = {
+	isOn: PropTypes.bool.isRequired,
+	onToggle: PropTypes.func
 }
 
-export default OnSwitch;
+OnSwitch.defaultProps = {
+	onToggle: () => { console.log('Not implemented') }
+}
+
+function OnSwitch ( {isOn, onToggle} ) {
+	return (
+		<button className="btn btn-secondary btn-lg" onClick={() => onToggle()}>
+			Przełącz {isOn ? '💡' : '💤'}
+		</button>
+	)
+}
+
+export default OnSwitch

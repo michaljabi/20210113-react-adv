@@ -1,4 +1,5 @@
 import React from 'react'
+import Quotes from './Quotes'
 import MemorableQuotes from './components/MemorableQuotes'
 import OnlyYodaQuotes from './components/OnlyYodaQuotes'
 
@@ -10,8 +11,21 @@ function AppFunctionAsAChildComponent () {
 			</header>
 			<main className="container">
 				   <div className="row">
-					   <MemorableQuotes />
-					   <OnlyYodaQuotes />
+					   <Quotes>
+						   {
+						   	({isLoading, quotes}) => {
+							    const yodaQuotes = quotes.filter(q => q.author === 'Yoda')
+						   	  return (
+						   	  	<>
+								      <MemorableQuotes quotes={quotes} isLoading={isLoading} />
+								      <OnlyYodaQuotes quotes={yodaQuotes} isLoading={isLoading} />
+							      </>
+						      )
+						   }
+						   }
+					   </Quotes>
+
+
 				   </div>
 			</main>
 		</div>

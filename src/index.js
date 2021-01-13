@@ -23,7 +23,7 @@ const Run = {
 
 ReactDOM.render(
   <React.StrictMode>
-    <Run.Task1 />
+    <Run.Task2  />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,47 +1,40 @@
-import React, { Component } from 'react'
-import swQuotesService from '../services/swQuotesService'
+import React from 'react'
+import MemorableQuotes from './MemorableQuotes'
+import Quotes from '../Quotes'
 
-class OnlyYodaQuotes extends Component {
+function OnlyYodaQuotes ( { isLoading, quotes } ) {
+	return (
+		<div className="col-6">
+			<h2> Cytaty tylko Yoda </h2>
+			{isLoading && <div className="alert alert-info"> ładowanie... </div>}
+			{!isLoading && (
+				<ul className="list-group">
+					{
+						quotes.map( ( q ) => (
+							<li key={q.text} className="list-group-item">
+								<h6 className="text-right">{q.author}</h6>
+								<div>{q.text}</div>
+							</li>)
+						)
+					}
+				</ul>
+			)}
 
-	state = {
-		isLoading: false,
-		quotes: []
-	}
+			<Quotes>
+				{
+					({isLoading, quotes}) => {
+						const yodaQuotes = quotes.filter(q => q.author === 'Darth Vader')
+						return (
+							<>
+								<MemorableQuotes quotes={yodaQuotes} isLoading={isLoading} />
+							</>
+						)
+					}
+				}
+			</Quotes>
 
-	loadAllTheQuotes() {
-		this.setState({isLoading: true})
-		swQuotesService.getAll()
-			.then((quotes) => {
-				const yodaQuotes = quotes.filter(q => q.author === 'Yoda')
-				this.setState({quotes: yodaQuotes, isLoading: false})
-			})
-	}
-
-	componentDidMount () {
-		this.loadAllTheQuotes();
-	}
-
-	render () {
-		const { isLoading, quotes } = this.state;
-		return (
-			<div className="col-6">
-				<h2> Cytaty tylko Yoda </h2>
-				{ isLoading && <div className="alert alert-info"> ładowanie... </div> }
-				{ !isLoading && (
-					<ul className="list-group">
-						{
-							quotes.map((q) => (
-								<li key={q.text} className="list-group-item">
-										<h6 className="text-right">{q.author}</h6>
-										<div>{q.text}</div>
-								</li>)
-							)
-						}
-					</ul>
-				)}
-			</div>
-		)
-	}
+		</div>
+	)
 }
 
-export default OnlyYodaQuotes
+export default OnlyYodaQuotes;
