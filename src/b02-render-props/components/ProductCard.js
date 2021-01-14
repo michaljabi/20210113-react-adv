@@ -13,3 +13,7 @@ function ProductCard ( {title, description, imgUrl}) {
 }
 
 export default ProductCard
+
+// Do testów przyda nam się to:
+// przezwany export (aliasowany celowo !!)
+export { ProductCard as ProductCardForTest }

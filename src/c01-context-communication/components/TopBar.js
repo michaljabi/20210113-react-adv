@@ -2,18 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import LoggedInUser from './LoggedInUser'
+import CurrentUser from '../context/CurrentUser'
 
 TopBar.propTypes = {
-	title: PropTypes.string.isRequired,
-	isAuth: PropTypes.bool.isRequired,
-	userName: PropTypes.string.isRequired,
+	title: PropTypes.string.isRequired
 }
 
-function TopBar ({userName, isAuth, title}) {
+function TopBar ({title}) {
 	return (
 		<div className="d-flex p-5 justify-content-between">
 			<h2>{title}</h2>
-			<LoggedInUser isAuth={isAuth} name={userName} />
+			<CurrentUser.Consumer>
+				{
+					(props) => (<LoggedInUser {...props} />)
+				}
+			</CurrentUser.Consumer>
 		</div>
 	)
 }

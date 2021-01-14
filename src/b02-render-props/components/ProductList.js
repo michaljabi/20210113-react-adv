@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
-import ProductCard from './ProductCard'
+import PropTypes from 'prop-types'
 
 class ProductList extends Component {
+
+	static propTypes = {
+		render: PropTypes.func.isRequired
+	}
 
 	state = {
 		products: [
@@ -17,17 +21,20 @@ class ProductList extends Component {
 
 	render () {
 		const { products } = this.state;
-		const { title } = this.props;
+		const { title, render } = this.props;
+		if(typeof render !== 'function') {
+			throw new Error('ProductList needs render prop to be a function')
+		}
 		return (
 			<div className="mt-3">
 				<h3>{title}</h3>
-				<div className="row mt-2">
-					{products.map( ( product ) => (
-						<div key={product.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
-							<ProductCard {...product} />
-						</div>)
-					)}
-				</div>
+				{
+					render({ products })
+					/*
+						===
+						render({ products: products })
+					*/
+				}
 			</div>
 		)
 	}

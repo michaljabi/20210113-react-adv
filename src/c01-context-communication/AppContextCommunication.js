@@ -1,26 +1,26 @@
-import React, { Component } from 'react'
+import React from 'react'
 import TopBar from './components/TopBar'
+import CurrentUser from './context/CurrentUser'
+import withAuth from './context/withAuth'
 
-class AppContextCommunication extends Component {
+function Info({auth}) {
+	return <span> {auth.name}</span>
+}
 
-	state = {
-		userName: '',
-		isAuth: false
-	}
+const UserInfo = withAuth(Info);
 
-	render () {
-		const {userName, isAuth} = this.state;
-		return (
-			<div>
-				<header className="jumbotron text-center bg-dark text-light">
-					<h1> #C01. Context API </h1>
-				</header>
-				<main className="container">
-					<TopBar title="Witaj w aplikacji z user'em" userName={userName} isAuth={isAuth} />
-				</main>
-			</div>
-		)
-	}
+function AppContextCommunication () {
+
+	return (
+		<CurrentUser.Provider>
+			<header className="jumbotron text-center bg-dark text-light">
+				<h1> #C01. Context API <UserInfo/> </h1>
+			</header>
+			<main className="container">
+				<TopBar title="Witaj w aplikacji z user'em" />
+			</main>
+		</CurrentUser.Provider>
+	)
 }
 
 export default AppContextCommunication
