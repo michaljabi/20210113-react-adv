@@ -7,9 +7,9 @@ export class Guest {
 	  presence = 'UNCONFIRMED'
 
 	  constructor (name, presence= 'UNCONFIRMED') {
-	  	makeAutoObservable(this);
 	  	this.name = name;
 	  	this.presence = presence;
+		  makeAutoObservable(this);
 	  }
 
 		changePresence = (presence) => {

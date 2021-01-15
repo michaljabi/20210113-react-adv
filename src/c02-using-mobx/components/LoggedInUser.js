@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import { observer } from 'mobx-react-lite'
-// import { userState } from '../store/state'
+import { observer } from 'mobx-react-lite'
+import { userState } from '../store/state'
 
 LoggedInUser.propTypes = {
 	isAuth: PropTypes.bool.isRequired,
@@ -33,4 +33,7 @@ function LoggedInUser ({name, isAuth, logInUser, logOutUser}) {
 	)
 }
 
-export default LoggedInUser;
+export default observer(() => {
+	const {isAuth, name, logInUser, logOutUser} = userState;
+	return <LoggedInUser isAuth={isAuth} name={name} logInUser={logInUser} logOutUser={logOutUser} />
+});
