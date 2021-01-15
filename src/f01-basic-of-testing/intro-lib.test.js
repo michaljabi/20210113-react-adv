@@ -15,7 +15,7 @@ describe('intro-lib', () => {
 		//ACT / when
 		const result = someIntroLib.greetings();
 		//ASSERT / then
-		expect(result).toBe('Greetings nobody')
+		expect(result).toBe('Greetings nobody')  // ===
 	})
 
 	describe('makeATuple', () => {

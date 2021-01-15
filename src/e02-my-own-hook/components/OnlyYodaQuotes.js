@@ -1,4 +1,11 @@
-function OnlyYodaQuotes ( { isLoading, quotes } ) {
+//import { useQuotes } from '../useQuotes'
+
+
+function OnlyYodaQuotes ({ isLoading, quotes}) {
+
+	// const { isLoading, quotes} = useQuotes('Yoda');
+
+
 	return (
 		<div className="col-6">
 			<h2> Cytaty tylko Yoda </h2>

@@ -1,6 +1,8 @@
 
 function numTypeCheck(num) {
-	throw new Error(`Value ${num} is wrong - please provide a number...`)
+	if(typeof num !== 'number'){
+		throw new Error(`Value ${num} is wrong - please provide a number...`)
+	}
 }
 
 const mathFunctions = {

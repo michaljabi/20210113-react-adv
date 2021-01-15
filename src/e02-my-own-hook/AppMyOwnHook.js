@@ -1,7 +1,11 @@
 import MemorableQuotes from './components/MemorableQuotes'
 import OnlyYodaQuotes from './components/OnlyYodaQuotes'
+import { useQuotes } from './useQuotes'
 
 function AppMyOwnHook() {
+
+	const { isLoading, quotes} = useQuotes();
+
 	return (
 		<div>
 			<header className="jumbotron text-center bg-dark text-light">
@@ -9,8 +13,8 @@ function AppMyOwnHook() {
 			</header>
 			<main className="container">
 				<div className="row">
-					<MemorableQuotes />
-					<OnlyYodaQuotes isLoading={true} quotes={[]} />
+					<MemorableQuotes isLoading={isLoading} quotes={quotes} />
+					<OnlyYodaQuotes isLoading={isLoading} quotes={quotes.filter(q => q.author === 'Yoda' )} />
 				</div>
 			</main>
 		</div>

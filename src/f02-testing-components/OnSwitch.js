@@ -13,7 +13,7 @@ class OnSwitch extends Component {
 	render () {
 		return (
 			<div className="text-center">
-				<h1 className="mb-5">{ this.state.isOn ? '💡' : '💤'}</h1>
+				<h1 data-testid="light" className="mb-4"> { this.state.isOn ? '💡' : '💤'} </h1>
 				<button className="btn btn-secondary btn-lg" onClick={this.handleToggle}>
 					Przełącz
 				</button>

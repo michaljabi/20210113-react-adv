@@ -31,7 +31,7 @@ const Run = {
 
 ReactDOM.render(
   <React.StrictMode>
-    <Run.Task1 />
+    <Run.Task10 />
   </React.StrictMode>,
   document.getElementById('root')
 );
